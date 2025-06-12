@@ -54,11 +54,49 @@ This CV is automatically built using GitHub Actions whenever changes are made:
 3. **Release Creation** - New release is created with the updated PDF
 4. **Automatic Deployment** - PDF is made available for download
 
+### 🏗️ **Local Development**
+
+You can build the CV locally using either method:
+
+#### Method 1: Using Make
+```bash
+# Build the PDF
+make
+
+# Clean build files
+make clean
+
+# Build and open PDF
+make open
+```
+
+#### Method 2: Using Build Script
+```bash
+# Run the interactive build script
+./build_cv.sh
+```
+
+#### Method 3: Manual LaTeX Commands
+```bash
+# Compile LaTeX (run twice for cross-references)
+pdflatex main.tex
+pdflatex main.tex
+
+# Rename to final name
+mv main.pdf Ramez_Nashaat_CV.pdf
+```
+
+### 📋 **Prerequisites**
+- **LaTeX Distribution**: MacTeX, TeX Live, or MiKTeX
+- **Required Packages**: texlive-latex-base, texlive-latex-extra, texlive-fonts-recommended
+
 ## 📂 Repository Structure
 
 ```
 ├── main.tex              # Main LaTeX document
 ├── resume.cls            # Custom resume class
+├── Makefile              # Build automation
+├── build_cv.sh           # Interactive build script
 ├── .github/
 │   └── workflows/
 │       └── build-cv.yml  # GitHub Actions workflow
@@ -93,7 +131,7 @@ This CV is dynamically linked from my main GitHub profile:
 
 For any questions or collaboration opportunities:
 
-- **Email**: [rameznashaat9999@gmail.com](mailto:rameznashaat9999@gmail.com)
+- **Email**: [lahzyramez@gmail.com](mailto:lahzyramez@gmail.com)
 - **LinkedIn**: [ramez-lahzy](https://linkedin.com/in/ramez-lahzy-37188021a/)
 - **GitHub**: [ramezlahzy](https://github.com/ramezlahzy)
 - **Portfolio**: [tiny.cc/ramezCV](http://tiny.cc/ramezCV)
