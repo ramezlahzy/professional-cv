@@ -7,6 +7,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: write
+  packages: write
+
 jobs:
   build-pdf:
     runs-on: ubuntu-latest
@@ -24,6 +28,15 @@ jobs:
       run: |
         pdflatex -interaction=nonstopmode main.tex
         pdflatex -interaction=nonstopmode main.tex
+        ls -la *.pdf
+        
+    - name: Check PDF was created
+      run: |
+        if [ ! -f main.pdf ]; then
+          echo "Error: main.pdf was not created"
+          exit 1
+        fi
+        echo "PDF successfully created: $(ls -lh main.pdf)"
         
     - name: Rename PDF
       run: mv main.pdf Ramez_Nashaat_CV.pdf
@@ -40,7 +53,7 @@ jobs:
       
     - name: Create Release
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         tag_name: v${{ steps.date.outputs.date }}-${{ github.run_number }}
         name: CV Release ${{ steps.date.outputs.date }}
@@ -64,5 +77,6 @@ jobs:
         files: Ramez_Nashaat_CV.pdf
         draft: false
         prerelease: false
+        make_latest: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
