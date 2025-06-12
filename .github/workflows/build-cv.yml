@@ -1,0 +1,68 @@
+name: Build and Release CV
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Install LaTeX
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
+
+    - name: Compile LaTeX to PDF
+      run: |
+        pdflatex main.tex
+        pdflatex main.tex
+        
+    - name: Rename PDF
+      run: mv main.pdf Ramez_Nashaat_CV.pdf
+      
+    - name: Upload PDF artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: cv-pdf
+        path: Ramez_Nashaat_CV.pdf
+        
+    - name: Get current date
+      id: date
+      run: echo "date=$(date +'%Y.%m.%d')" >> $GITHUB_OUTPUT
+      
+    - name: Create Release
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: v${{ steps.date.outputs.date }}-${{ github.run_number }}
+        name: CV Release ${{ steps.date.outputs.date }}
+        body: |
+          ## 📄 Professional CV - Latest Version
+          
+          **Release Date:** ${{ steps.date.outputs.date }}
+          **Build Number:** ${{ github.run_number }}
+          
+          ### 📋 What's Included:
+          - ✅ Latest professional experience updates
+          - ✅ Current technical skills and expertise
+          - ✅ Recent project accomplishments
+          - ✅ Updated competitive programming achievements
+          
+          ### 📥 Download:
+          Click on `Ramez_Nashaat_CV.pdf` below to download the latest version.
+          
+          ---
+          *This CV is automatically generated from LaTeX source code and kept up-to-date with the latest professional information.*
+        files: Ramez_Nashaat_CV.pdf
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
