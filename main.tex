@@ -1,118 +1,197 @@
-\documentclass{resume}
-\usepackage[left=0.4in,top=0.3in,right=0.4in,bottom=0.3in]{geometry}
+\documentclass[8pt,a4paper]{article}
+\usepackage[left=0.3in,top=0.2in,right=0.3in,bottom=0.2in]{geometry}
 \usepackage{hyperref}
 \usepackage{fontawesome5}
 \usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{parskip}
 
-% Optimize for one page
-\setlength{\parskip}{0pt}
-\setlist{noitemsep, topsep=0pt, parsep=0pt, partopsep=0pt}
+% Remove page numbering
+\pagestyle{empty}
 
 % Color definitions
-\definecolor{linkcolor}{RGB}{0, 123, 255}
+\definecolor{primarycolor}{RGB}{0, 102, 204}
+\definecolor{secondarycolor}{RGB}{64, 64, 64}
+\definecolor{accentcolor}{RGB}{0, 153, 76}
+
+% Hyperlink setup
 \hypersetup{
     colorlinks=true,
-    linkcolor=linkcolor,
-    filecolor=linkcolor,
-    urlcolor=linkcolor,
+    linkcolor=primarycolor,
+    filecolor=primarycolor,
+    urlcolor=primarycolor,
 }
 
-\name{Ramez Nashaat Lahzy}
-\address{
-\faEnvelope\ \href{mailto:lahzyramez@gmail.com}{lahzyramez@gmail.com} | 
-\faGithub\ \href{https://github.com/ramezlahzy}{github.com/ramezlahzy} | 
-\faLinkedin\ \href{https://linkedin.com/in/ramez-lahzy-37188021a/}{LinkedIn} | 
-\faPhone\ (+2) 01550575832 \\
-\faGlobe\ \href{http://tiny.cc/ramezCV}{Portfolio} | 
-\faCode\ \href{https://codeforces.com/profile/Ramez__}{Codeforces: 1657 Rating} | 
-\faMapMarker\ Cairo, Egypt
+% Custom section formatting
+\titleformat{\section}
+{\color{primarycolor}\small\bfseries}
+{}
+{0em}
+{}[\vspace{-0.02em}\titlerule\vspace{0.02em}]
+
+\titleformat{\subsection}
+{\color{secondarycolor}\small\bfseries}
+{}
+{0em}
+{}
+
+% Custom commands
+\newcommand{\cvheader}[1]{%
+    \begin{center}
+        {\Large\bfseries\color{primarycolor} #1}
+    \end{center}
 }
+
+\newcommand{\contactinfo}[1]{%
+    \begin{center}
+        \small #1
+    \end{center}
+    \vspace{0.02em}
+}
+
+\newcommand{\cventry}[4]{%
+    \textbf{#1} \hfill {\small\color{secondarycolor} #2} \hfill {\footnotesize\textit{#3}}\\
+    #4
+    \vspace{0.02em}
+}
+
+\newcommand{\skillsection}[2]{%
+    \textbf{#1:} #2\\[-0.02em]
+}
+
+% Set list formatting
+\setlist{nosep, leftmargin=0.8em, itemsep=-0.02em}
+
 \begin{document}
+
+%----------------------------------------------------------------------------------------
+%	HEADER
+%----------------------------------------------------------------------------------------
+
+\cvheader{Ramez Nashaat Lahzy}
+
+\contactinfo{
+\faEnvelope\ \href{mailto:lahzyramez@gmail.com}{lahzyramez@gmail.com} \quad
+\faPhone\ (+20) 1550575832 \quad
+\faMapMarker\ Cairo, Egypt \\
+\faGithub\ \href{https://github.com/ramezlahzy}{github.com/ramezlahzy} \quad
+\faLinkedin\ \href{https://linkedin.com/in/ramez-lahzy-37188021a/}{LinkedIn} \quad
+\faGlobe\ \href{https://www.upwork.com/freelancers/ramezn3}{Upwork} \quad
+\faCode\ \href{https://codeforces.com/profile/Ramez__}{Codeforces: 1657}
+}
 
 %----------------------------------------------------------------------------------------
 %	PROFESSIONAL SUMMARY
 %----------------------------------------------------------------------------------------
 
-\begin{rSection}{Professional Summary}
-\vspace{-0.1in}
-Senior Full-Stack Engineer with 4+ years of experience specializing in React/React Native, AWS cloud infrastructure, and mobile development. Proven track record: 25+ successful Upwork projects (5.0/5.0 rating), 1000+ competitive programming problems solved, and ICPC Regional Qualifier (Top 10). Expertise in building scalable applications across web, mobile, and cloud platforms.
-\end{rSection}
+\section{Professional Summary}
+
+Senior Full-Stack Engineer with 2+ years building scalable React/React Native apps and AWS infrastructure. 25+ projects, 5.0/5.0 rating, \$8,000+ revenue, 10,000+ users served. ECPC Top 10, Codeforces Specialist (1657), Top 3\% Upwork freelancer.
+
+%----------------------------------------------------------------------------------------
+%	PROFESSIONAL EXPERIENCE
+%----------------------------------------------------------------------------------------
+
+\section{Professional Experience}
+
+\cventry{ Full-Stack Developer (Freelance) - Upwork Platform}{Aug 2023 - Present}{}{Remote}{
+\begin{itemize}
+    \item Delivered 25+ projects with 100\% success rate and 5.0/5.0 rating, generating \$8,000+ revenue
+    \item Built cross-platform React Native apps serving 10,000+ users across e-commerce, healthcare, and fintech
+\end{itemize}
+}
+
+\cventry{Full-Stack Developer - Pyng Technologies}{Jan 2024 - Dec 2024}{Cairo, Egypt}{
+\begin{itemize}
+    \item Led development of NFC-enabled React Native applications, achieving 40\% performance improvement
+    \item Managed 3-developer team implementing accessibility features and background processing
+\end{itemize}
+}
+
+\cventry{Game Developer Intern - Gmind Studio}{July 2022 - Sept 2022}{Cairo, Egypt}{
+\begin{itemize}
+    \item Created educational 3D game using Unity/C\#, achieving 10,000+ downloads and 60\% engagement boost
+\end{itemize}
+}
+
+%----------------------------------------------------------------------------------------
+%	KEY PROJECTS
+%----------------------------------------------------------------------------------------
+
+\section{Key Projects}
+
+% \cventry{E-Commerce Mobile Platform}{2024}{React Native, AWS, Node.js}{
+% Cross-platform app with real-time inventory, payment integration, and analytics. Serves 5,000+ users with 99.9\% uptime, processing 10,000+ monthly transactions.
+% }
+
+\cventry{Enterprise Microservices Platform}{2025}{Spring Boot, Kubernetes, Redis, RabbitMQ}{
+Distributed social platform with 4-microservice architecture, featuring Nginx API gateway, Redis caching, and RabbitMQ messaging. Deployed with Docker and Kubernetes for scalability. \href{https://github.com/mariamhmostafa/FinalProject-29-Cache_Me_If_You_Can}{GitHub Repository}
+}
+
+\cventry{Healthcare Management Ecosystem}{2024}{MERN Stack, TypeScript, MongoDB}{
+Co-developed comprehensive clinic and pharmacy management platforms serving 10,000+ users. Implemented real-time dashboards, authentication systems, and automated workflows. \href{https://github.com/advanced-computer-lab-2023/Copilot-and-Sons-Clinic}{Clinic} | \href{https://github.com/advanced-computer-lab-2023/Copilot-and-Sons-Pharmacy}{Pharmacy}
+}
+
+\cventry{React Native Community Contributions}{2023-2024}{React Native, Firebase, Open Source}{
+Active contributor to React Native Apps Showcase and open-source mobile projects. Enhanced BookStore app with modern UI/UX and Firebase integration.  \href{https://github.com/ramezlahzy/BookStore}{BookStore}
+}
+
+\cventry{AWS CDK Full Stack Infrastructure}{2023}{AWS CDK, TypeScript, CI/CD}{
+Enterprise-grade cloud infrastructure with automated deployment pipeline using AWS CDK. Implements Infrastructure as Code with CodePipeline, Lambda functions, and DynamoDB. \href{https://github.com/ramezlahzy/cdk_fullstack_app}{GitHub Repository}
+}
+
+% \cventry{Legal Case Management App}{2024}{React Native, Expo}{
+% Built a React Native application for legal professionals to manage case files, track deadlines, and streamline client communication, utilizing Expo for rapid development.
+% }
+
+% \cventry{Offline-First E-commerce App}{2023}{React Native, SQLite}{
+% Engineered a React Native e-commerce application with robust offline capabilities using SQLite, ensuring seamless user experience and data synchronization with intermittent connectivity.
+% }
+
+%----------------------------------------------------------------------------------------
+%	TECHNICAL SKILLS
+%----------------------------------------------------------------------------------------
+
+\section{Technical Skills}
+
+\skillsection{Programming}{JavaScript/TypeScript, Java, Python, C++, C\#, SQL, HTML5, CSS3}
+\skillsection{Frontend \& Mobile}{React.js, React Native, Next.js, Vue.js, Bootstrap, Tailwind CSS, Material-UI}
+\skillsection{Backend \& Cloud}{Node.js, Express.js, Spring Boot, AWS (Lambda, DynamoDB, S3, CDK), Docker, Kubernetes, Nginx}
+\skillsection{Databases \& Tools}{MongoDB, PostgreSQL, Redis, RabbitMQ, Firebase, Git, Jenkins, Postman, Unity 3D, Jest}
 
 %----------------------------------------------------------------------------------------
 %	EDUCATION
 %----------------------------------------------------------------------------------------
 
-\begin{rSection}{Education}
-\vspace{-0.1in}
-{\bf German University in Cairo (GUC)} \hfill {\em Oct. 2020 - July 2025} \\
-Bachelor of Computer Science and Engineering, CGPA: 1.15 (German Scale A) - Dean's List \\
-{\bf Ulm University, Germany} - Bachelor's Thesis: SAT Solving Algorithms (Grade: A+)
-\end{rSection}
+\section{Education}
+
+\cventry{German University in Cairo (GUC)}{Oct 2020 - July 2025}{Bachelor of Computer Science and Engineering}{
+\textbf{CGPA:} 1.15/1.0 (German Scale - Grade A) | \textbf{Dean's List} (2021-2024) \\
+\textbf{Thesis:} SAT Solving Algorithms at Ulm University, Germany (Grade: A+)
+}
 
 %----------------------------------------------------------------------------------------
-%	WORK EXPERIENCE
+%	ACHIEVEMENTS & CERTIFICATIONS
 %----------------------------------------------------------------------------------------
 
-\begin{rSection}{Professional Experience}
-\vspace{-0.1in}
-\begin{rSubsection}{Senior Freelance Developer - Upwork Platform}{\em Aug. 2023 - Present}{}{}
-\item Completed {\bf 25+ projects} with 100\% success rate and 5.0/5.0 client rating, generating \$12,000+ revenue
-\item Specialized in React Native mobile apps, AWS cloud infrastructure (Lambda, DynamoDB, API Gateway), and full-stack development
-\item Led development of cross-platform applications serving 10,000+ users across e-commerce, healthcare, and fintech
-\end{rSubsection}
+\section{Achievements \& Certifications}
 
-\vspace{-0.05in}
-\begin{rSubsection}{Full Stack Developer - Pyng Technologies}{\em Jan. 2024 - Dec. 2024}{}{}
-\item Developed NFC-enabled mobile applications with React Native, achieving 40\% performance improvement
-\item Led 3-developer team implementing accessibility features and background data processing
-\end{rSubsection}
-
-\vspace{-0.05in}
-\begin{rSubsection}{Game Developer Intern - Gmind Studio}{\em July 2022 - Sept. 2022}{}{}
-\item Created educational 3D game using Unity and C\#, achieving 10,000+ downloads and 60\% engagement improvement
-\end{rSubsection}
-\end{rSection}
-
-%----------------------------------------------------------------------------------------
-%	TECHNICAL SKILLS & ACHIEVEMENTS
-%----------------------------------------------------------------------------------------
-
-\begin{rSection}{Technical Skills \& Achievements}
-\vspace{-0.1in}
-\begin{rSubsection}{}{}{}{}
-\item {\bf Programming:} JavaScript/TypeScript, Java, Python, C++, React/React Native, Node.js, Express.js
-\item {\bf Cloud \& DevOps:} AWS (Lambda, DynamoDB, API Gateway, S3, CDK), Docker, CI/CD, GitHub Actions
-\item {\bf Databases \& Tools:} MongoDB, PostgreSQL, Firebase, Git, VS Code, Unity, TensorFlow
-\item {\bf Competitive Programming:} Codeforces Specialist (1657 rating), 1000+ problems solved, ICPC Regional Qualifier
-\item {\bf Key Achievements:} 7th Place ICPC ECPC 2024 (200+ teams), Top Rated Upwork Freelancer, Dean's List (2021-2024)
-\end{rSubsection}
-\end{rSection}
-
-%----------------------------------------------------------------------------------------
-%	KEY PROJECTS & GITHUB PORTFOLIO
-%----------------------------------------------------------------------------------------
-
-\begin{rSection}{Key Projects \& GitHub Portfolio}
-\vspace{-0.1in}
-\begin{rSubsection}{}{}{}{}
-\item {\bf BookStore (React Native):} \href{https://github.com/ramezlahzy/BookStore}{github.com/ramezlahzy/BookStore} - Cross-platform e-commerce app with Firebase, supporting 10K+ users
-\item {\bf Social Media Platform:} \href{https://github.com/ramezlahzy/social_app}{github.com/ramezlahzy/social\_app} - Full-stack platform with React Native, Node.js, real-time messaging
-\item {\bf AWS Cloud Infrastructure:} \href{https://github.com/ramezlahzy/cdk_fullstack_app}{github.com/ramezlahzy/cdk\_fullstack\_app} - Serverless architecture with CDK, 60\% cost reduction
-\item {\bf AI/ML Research:} \href{https://github.com/ramezlahzy/AI_Bros}{github.com/ramezlahzy/AI\_Bros} - Neural networks and optimization algorithms with 15\% performance improvement
-\item {\bf Portfolio:} \href{https://github.com/ramezlahzy}{github.com/ramezlahzy} - 40+ repositories showcasing full-stack development, competitive programming solutions
-\end{rSubsection}
-\end{rSection}
+\begin{itemize}
+    \item \textbf{ECPC 2024:} 7th place among 200+ teams | \textbf{Codeforces Specialist:} 1657 rating, 1000+ problems solved
+    \item \textbf{Top Rated Upwork Freelancer:} Top 3\% globally with 100\% Job Success Score
+    \item \textbf{Dean's List} recipient (2021-2024) | \textbf{Research:} Co-authored SAT solving optimization paper
+\end{itemize}
 
 %----------------------------------------------------------------------------------------
 %	ADDITIONAL INFORMATION
 %----------------------------------------------------------------------------------------
 
-\begin{rSection}{Additional Information}
-\vspace{-0.1in}
-{\bf Languages:} Arabic (Native), English (Advanced C1), German (Intermediate B2) \\
-{\bf Certifications:} AWS Cloud Architecture, Top Rated Upwork Freelancer (Top 3\%), Open Source Contributor \\
-{\bf Research:} Published SAT solving optimization techniques, Mentored 20+ students in competitive programming
-\end{rSection}
+\section{Additional Information}
+
+\skillsection{Languages}{Arabic (Native), English (Advanced C1), German (Intermediate B2)}
+\skillsection{Interests}{Machine Learning, Cloud Architecture, Competitive Programming, Open Source Contribution}
 
 \end{document}
